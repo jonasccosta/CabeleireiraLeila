@@ -62,10 +62,11 @@
         app:srcCompat="@drawable/cabelo" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/agendar_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#BAFFEA00"
+        android:padding="8dp"
         android:text=" Agende seu horário "
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
