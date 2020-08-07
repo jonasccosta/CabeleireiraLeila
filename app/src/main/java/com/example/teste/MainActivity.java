@@ -25,5 +25,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
+
+        Button portfolio_button = findViewById(R.id.portfolio_button);
+        portfolio_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Portfolio.class));
+            }
+        });
+
     }
 }

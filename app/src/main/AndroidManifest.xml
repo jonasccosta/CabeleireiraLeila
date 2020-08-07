@@ -21,6 +21,23 @@
             android:name=".Register"
             >
         </activity>
+
+        <activity
+            android:name=".Portfolio"
+            >
+        </activity>
+
+        <activity
+            android:name=".Cabelos"
+            >
+        </activity>
+
+        <activity
+            android:name=".Unhas"
+            >
+        </activity>
+
+
     </application>
 
 </manifest>
