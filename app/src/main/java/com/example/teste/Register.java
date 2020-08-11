@@ -30,9 +30,10 @@ import java.util.Date;
 import java.util.List;
 
 public class Register extends AppCompatActivity {
-    private List<RadioButton> atividades = new ArrayList<>();
+    private List<String> atividades = new ArrayList<>();
     private String horario;
     private String data;
+    private Button button;
     public boolean horarioIsCorrect, activityIsSelected, dataIsSelected;
 
     @Override
@@ -40,97 +41,80 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         horarioIsCorrect = false;
-        activityIsSelected = true;
+        activityIsSelected = false;
         dataIsSelected = false;
+        button = findViewById(R.id.contact_button);
         setUpListeners();
     }
 
 
-    private void setUpListeners(){
-        final Button contact_button = findViewById(R.id.contact_button);
-        contact_button.setEnabled(false);
+    private void setUpListeners() {
+        RadioButton cabelos = findViewById(R.id.cabelo_radioButton);
+        setUpRadioButtons(cabelos);
+
+        RadioButton unhas1 = findViewById(R.id.unhas_radiobutton1);
+        setUpRadioButtons(unhas1);
+
+        RadioButton hitratacao = findViewById(R.id.hitratacao_radiobutton);
+        setUpRadioButtons(hitratacao);
+
+        RadioButton unhas2 = findViewById(R.id.unhas_radiobutton2);
+        setUpRadioButtons(unhas2);
+
+        CalendarView calendarView = findViewById(R.id.calendarView);
+        setUpData(calendarView);
 
         EditText horario = findViewById(R.id.horario_textEdit);
-        CalendarView calendarView = findViewById(R.id.calendarView);
+        setUpHorario(horario);
 
+        button.setEnabled(false);
+        setUpButton(button);
 
-        setUpHorario(horario, contact_button);
+    }
 
-
-
-
-        RadioButton cabelos = findViewById(R.id.cabelo_radioButton);
-        RadioButton unhas1 = findViewById(R.id.unhas_radiobutton1);
-        RadioButton hitratação = findViewById(R.id.hitratacao_radiobutton);
-        RadioButton unhas2 = findViewById(R.id.unhas_radiobutton2);
-
-
-        addToList(cabelos);
-        addToList(unhas1);
-        addToList(hitratação);
-        addToList(unhas2);
-
-        setUpRadioButtons(cabelos, contact_button);
-        setUpRadioButtons(unhas1, contact_button);
-        setUpRadioButtons(hitratação, contact_button);
-        setUpRadioButtons(unhas2, contact_button);
-
-        setUpData(calendarView, contact_button);
-
-
-
-        //TextView text = findViewById(R.id.horario_textEdit);
-        //System.out.println(text);
-
-
-
-
-        /*contact_button.setOnClickListener(new View.OnClickListener() {
+    public void setUpButton(Button button) {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Register.this, Contato.class)); }
-        }
-        );*/
-
-        setUpButton(contact_button);
-
-
-
+                startActivity(new Intent(Register.this, Contato.class));
+            }
+        });
 
     }
 
-    private void setUpButton(Button button){
-        //if(dataIsSelected && horarioIsCorrect && activityIsSelected){
-            button.setEnabled(true);
-            button.setOnClickListener(new View.OnClickListener() {
-                                                  @Override
-                                                  public void onClick(View view) {
-                                                      startActivity(new Intent(Register.this, Contato.class)); }
-                                              }
-            );
-        //}
-    }
-
-    private void setUpRadioButtons(RadioButton radioButton, final Button button){
-            radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if(b){
-                        enableButton(button);
-                        //activityIsSelected = b;
-                    }
-
+    public void setUpRadioButtons(final RadioButton radioButton) {
+        radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    addToList(radioButton);
+                    activityIsSelected = true;
+                    enableButton(button);
                 }
-            });
+
+            }
+        });
     }
 
-    private void setUpHorario(final EditText text, final Button yourButton){
+    public void setUpData(final CalendarView calendarView) {
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                month++;
+                setData(dayOfMonth + "/" + month + "/" + year);
+                dataIsSelected = true;
+                enableButton(button);
+            }
+        });
+    }
+
+    public void setUpHorario(final EditText text) {
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
-
                 horarioIsCorrect = enableSubmitIfReady(text);
-                //enableButton(yourButton);
+                enableButton(button);
+
             }
 
             @Override
@@ -144,52 +128,43 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public boolean enableSubmitIfReady(EditText text){
-        boolean isNotEmpty = text.getText().toString().length() > 0;
-
+    public boolean enableSubmitIfReady(EditText text) {
         boolean correctFormat = false;
-
-        String hora = text.getText().toString();
-
-        Date date = null;
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-            date = formatter.parse(hora);
-            if (!hora.equals(formatter.format(date))) {
-                date = null;
+        if (text.getText().toString().length() == 5) {
+            String hora = text.getText().toString();
+            Date date = null;
+            try {
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                date = formatter.parse(hora);
+                assert date != null;
+                if (!hora.equals(formatter.format(date))) {
+                    date = null;
+                }
+            } catch (ParseException ex) {
+                ex.printStackTrace();
             }
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-        if (date != null) {
-            // Invalid date format
-            correctFormat = true;
-        }
+            if (date != null) {
+                // Invalid date format
+                this.setHorario(hora);
+                correctFormat = true;
+            }
 
-        return correctFormat && isNotEmpty;
+
+        }
+        return correctFormat;
     }
 
-    private void enableButton(Button button){
-        if(dataIsSelected && horarioIsCorrect && activityIsSelected){
+
+    public void enableButton(Button button) {
+        if (dataIsSelected && horarioIsCorrect && activityIsSelected) {
             button.setEnabled(true);
         }
-
-    }
-
-    private void setUpData(final CalendarView calendarView, final Button button){
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                dataIsSelected = true;
-                //enableButton(button);
-            }
-        });
     }
 
 
-    private void addToList(RadioButton button){
-        if(button.isChecked()){
-            atividades.add(button);
+    private void addToList(RadioButton button) {
+        if (button.isChecked()) {
+            atividades.add(button.getText().toString());
         }
     }
 
@@ -197,12 +172,11 @@ public class Register extends AppCompatActivity {
         this.horario = horario;
     }
 
-    public void setData(CalendarView calendarView) {
-        DateFormat df = new SimpleDateFormat("dd/MM/aaaa");
-        this.data = df.format(calendarView.getDate());
+    public void setData(String data) {
+        this.data = data;
     }
 
-    public List<RadioButton> getAtividades() {
+    public List<String> getAtividades() {
         return atividades;
     }
 
