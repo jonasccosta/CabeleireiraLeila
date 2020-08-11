@@ -37,6 +37,18 @@
             >
         </activity>
 
+        <activity
+            android:name=".Contato"
+            >
+        </activity>
+
+        <activity
+            android:name=".Final"
+            >
+        </activity>
+
+
+
 
     </application>
 
