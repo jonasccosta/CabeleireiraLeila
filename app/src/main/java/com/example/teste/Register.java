@@ -1,31 +1,21 @@
 package com.example.teste;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -77,6 +67,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Register.this, Contato.class));
+                sendInfo();
             }
         });
 
@@ -88,6 +79,7 @@ public class Register extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     addToList(radioButton);
+                    System.out.println(getAtividades().get(0));
                     activityIsSelected = true;
                     enableButton(button);
                 }
@@ -154,13 +146,53 @@ public class Register extends AppCompatActivity {
         return correctFormat;
     }
 
-
     public void enableButton(Button button) {
         if (dataIsSelected && horarioIsCorrect && activityIsSelected) {
             button.setEnabled(true);
         }
     }
 
+    private void sendInfo(){
+        String horario = this.getHorario();
+        String data = this.getData();
+        String tratamento = this.concatenate(this.getAtividades());
+
+        Intent i = new Intent(Register.this, Contato.class);
+
+        i.putExtra("tratamento", tratamento);
+        i.putExtra("horario", horario);
+        i.putExtra("data", data);
+
+        startActivity(i);
+
+    }
+
+    private String concatenate(List<String> strings){
+        String result = "";
+        if(strings.size() == 0){
+            return "";
+        }
+        else if(strings.size() == 1){
+            result = strings.get(0);
+        }
+        else if(strings.size() == 2){
+            result = strings.get(0) + " e " + strings.get(1);
+        }
+        else{
+            StringBuilder builder = new StringBuilder();
+            for(int i = 0; i < strings.size()-1; i++){
+                builder.append((strings.get(i)))
+                .append(", ");
+            }
+            builder.deleteCharAt(builder.length()-1);
+            builder.deleteCharAt(builder.length()-1);
+            builder.append(" e ");
+            builder.append(strings.get(strings.size()-1));
+            result = builder.toString();
+        }
+
+        return result;
+    }
 
     private void addToList(RadioButton button) {
         if (button.isChecked()) {
