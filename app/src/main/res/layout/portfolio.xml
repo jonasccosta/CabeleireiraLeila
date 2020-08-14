@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/unhas_button"
+        android:id="@+id/nailsPortfolioButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,10 +21,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/saloonNameTextView" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/inferiorMarginStars"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -34,7 +34,7 @@
         app:srcCompat="@drawable/starcopy" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/superiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -44,7 +44,7 @@
         app:srcCompat="@drawable/star" />
 
     <Button
-        android:id="@+id/cabelos_button"
+        android:id="@+id/hairPortfolioButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -58,10 +58,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/saloonNameTextView" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/saloonNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/kunstler"
@@ -74,20 +74,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/superiorMarginStars" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/leilaELuisClaudiImageView"
         android:layout_width="260dp"
         android:layout_height="156dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unhas_button"
+        app:layout_constraintTop_toBottomOf="@+id/nailsPortfolioButton"
         app:srcCompat="@drawable/leila" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/nailsAndHairTextView"
         android:layout_width="365dp"
         android:layout_height="124dp"
         android:layout_marginTop="8dp"
@@ -96,10 +96,10 @@
         android:text="Ela e o seu sobrinho neto Luis Claudio vão fazer suas unhas e cortar seus cabelos de uma forma maravilhosa!"
         android:textColor="#FFEA00"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/inferiorMarginStars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/leilaELuisClaudiImageView" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

@@ -11,12 +11,12 @@
         android:id="@+id/constraintLayout"
         android:layout_width="267dp"
         android:layout_height="155dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintBottom_toTopOf="@+id/inferiorMarginStars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/sloganTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kunstler"
@@ -32,7 +32,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/superiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/star" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/inferiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -52,17 +52,17 @@
         app:srcCompat="@drawable/starcopy" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/logo"
         android:layout_width="139dp"
         android:layout_height="132dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView"
         app:srcCompat="@drawable/cabelo" />
 
     <Button
-        android:id="@+id/agendar_button"
+        android:id="@+id/registrationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -89,10 +89,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/superiorMarginStars" />
 
     <Button
-        android:id="@+id/portfolio_button"
+        android:id="@+id/portfolioButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -103,9 +103,9 @@
         android:padding="8dp"
         android:text="Nosso trabalho"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toStartOf="@+id/agendar_button"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintBottom_toBottomOf="@+id/inferiorMarginStars"
+        app:layout_constraintEnd_toStartOf="@+id/registrationButton"
+        app:layout_constraintStart_toStartOf="@+id/inferiorMarginStars"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

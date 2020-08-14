@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/confirmationTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -22,10 +22,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmationTextView" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/confirmationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -35,10 +35,10 @@
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+        app:layout_constraintTop_toBottomOf="@+id/superiorMarginStars" />
 
     <ImageView
-        android:id="@+id/imageView27"
+        android:id="@+id/inferiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -48,7 +48,7 @@
         app:srcCompat="@drawable/starcopy" />
 
     <ImageView
-        android:id="@+id/imageView26"
+        android:id="@+id/superiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -58,7 +58,7 @@
         app:srcCompat="@drawable/star" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/sloganTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -72,7 +72,7 @@
         android:textColor="#FFEA00"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView27"
+        app:layout_constraintBottom_toTopOf="@+id/inferiorMarginStars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

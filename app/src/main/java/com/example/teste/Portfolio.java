@@ -17,20 +17,20 @@ public class Portfolio extends AppCompatActivity {
     }
 
     private void setUpListeners(){
-        Button cabelos_button = findViewById(R.id.cabelos_button);
+        Button cabelos_button = findViewById(R.id.hairPortfolioButton);
         cabelos_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Portfolio.this, Cabelos.class));
+                startActivity(new Intent(Portfolio.this, HairPortfolio.class));
             }
         }
         );
 
-        Button unhas_button = findViewById(R.id.unhas_button);
+        Button unhas_button = findViewById(R.id.nailsPortfolioButton);
         unhas_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Portfolio.this, Unhas.class));
+                startActivity(new Intent(Portfolio.this, NailsPortfolio.class));
             }
         });
     }

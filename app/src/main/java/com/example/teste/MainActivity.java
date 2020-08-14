@@ -17,17 +17,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpListeners(){
-        Button agendar_button = findViewById(R.id.agendar_button);
-        agendar_button.setOnClickListener(new View.OnClickListener() {
+        Button registrationButton = findViewById(R.id.registrationButton);
+        registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Register.class));
+                startActivity(new Intent(MainActivity.this, Registration.class));
             }
         }
         );
 
-        Button portfolio_button = findViewById(R.id.portfolio_button);
-        portfolio_button.setOnClickListener(new View.OnClickListener() {
+        Button portfolioButton = findViewById(R.id.portfolioButton);
+        portfolioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, Portfolio.class));

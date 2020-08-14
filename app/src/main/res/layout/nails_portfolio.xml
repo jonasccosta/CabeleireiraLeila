@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/inferiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/starcopy" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/superiorMarginStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -29,10 +29,10 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintBottom_toTopOf="@+id/inferiorMarginStars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9">
+        app:layout_constraintTop_toBottomOf="@+id/superiorMarginStars">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,74 +40,74 @@
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/imageView13"
+                android:id="@+id/nails1"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo10" />
+                app:srcCompat="@drawable/unhas1" />
 
             <ImageView
-                android:id="@+id/imageView14"
+                android:id="@+id/nails2"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo2" />
+                app:srcCompat="@drawable/unhas2" />
 
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/nails3"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo1" />
+                app:srcCompat="@drawable/unhas4" />
 
             <ImageView
-                android:id="@+id/imageView16"
+                android:id="@+id/nails4"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo6" />
+                app:srcCompat="@drawable/unhas3" />
 
             <ImageView
-                android:id="@+id/imageView17"
+                android:id="@+id/nails5"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo3" />
+                app:srcCompat="@drawable/unhas5" />
 
             <ImageView
-                android:id="@+id/imageView18"
+                android:id="@+id/nails6"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo4" />
+                app:srcCompat="@drawable/unhas6" />
 
             <ImageView
-                android:id="@+id/imageView19"
+                android:id="@+id/nails7"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo9" />
+                app:srcCompat="@drawable/unhas7" />
 
             <ImageView
-                android:id="@+id/imageView20"
+                android:id="@+id/nails8"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo5" />
+                app:srcCompat="@drawable/unhas8" />
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/nails9"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo7" />
+                app:srcCompat="@drawable/unhas9" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/nails10"
                 android:layout_width="match_parent"
                 android:layout_height="272dp"
                 android:layout_margin="8dp"
-                app:srcCompat="@drawable/cabelo8" />
+                app:srcCompat="@drawable/unhas10" />
         </LinearLayout>
     </ScrollView>
 

@@ -8,41 +8,42 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Contato  extends AppCompatActivity  {
-    private String nome;
+public class ContactInformation extends AppCompatActivity {
+    private String name;
     private String email;
-    private Button contact_button;
-    private boolean nomeIsCorrect, emailIsCorrect;
+    private Button confirmationButton;
+    private boolean nameIsCorrect, emailIsCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.contact);
+        setContentView(R.layout.contact_information);
+        nameIsCorrect = false;
+        emailIsCorrect = false;
         setUpListeners();
     }
 
-    private void setUpListeners(){
+    private void setUpListeners() {
 
-        EditText client = findViewById(R.id.editTextTextPersonName2);
-        setUpName(client);
+        EditText clientName = findViewById(R.id.nameEditText);
+        setUpName(clientName);
 
-        EditText email = findViewById(R.id.editTextTextEmailAddress);
+        EditText email = findViewById(R.id.emailEditText);
         setUpEmail(email);
 
-        contact_button = findViewById(R.id.final_button);
-        contact_button.setEnabled(false);
-        setUpButton(contact_button);
+        confirmationButton = findViewById(R.id.final_button);
+        confirmationButton.setEnabled(false);
+        setUpButton(confirmationButton);
 
     }
 
-    private void setUpButton(Button button){
+    private void setUpButton(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Contato.this, Final.class));
+                startActivity(new Intent(ContactInformation.this, Confirmation.class));
                 new Thread(new Runnable() {
 
                     @Override
@@ -50,7 +51,7 @@ public class Contato  extends AppCompatActivity  {
                         try {
                             GMailSender sender = new GMailSender("leilacabeleireira150@gmail.com",
                                     "framboesa");
-                            sender.sendMail("Seu horário com a Leila Cabeleireira está confirmado", composeEmail(getNome()),
+                            sender.sendMail("Seu horário com a Leila Cabeleireira está confirmado", composeEmail(getName()),
                                     "leilacabeleireira150@gmail.com", getEmail());
                         } catch (Exception e) {
                             Log.e("SendMail", e.getMessage(), e);
@@ -62,14 +63,15 @@ public class Contato  extends AppCompatActivity  {
         });
     }
 
-    private String composeEmail(String name){
+    private String composeEmail(String name) {
 
         Bundle extras = getIntent().getExtras();
         assert extras != null;
 
-        String horario = extras.getString("horario");
-        String data = extras.getString("data");
-        String tratamento = extras.getString("tratamento");
+        String treatment = extras.getString("treatment");
+        String date = extras.getString("date");
+        String time = extras.getString("time");
+
         String lineSeparator = System.getProperty("line.separator");
 
         StringBuilder result = new StringBuilder();
@@ -80,11 +82,11 @@ public class Contato  extends AppCompatActivity  {
                 .append(lineSeparator)
                 .append(lineSeparator)
                 .append("Seu tratamento de ")
-                .append(tratamento)
+                .append(treatment)
                 .append(" está marcado para o dia ")
-                .append(data)
+                .append(date)
                 .append(", às ")
-                .append(horario)
+                .append(time)
                 .append(" horas. Esperamos você!")
                 .append(lineSeparator)
                 .append("OBS: com a pandemia, tudo está esterelizado, pa você não ficar mal!")
@@ -96,7 +98,7 @@ public class Contato  extends AppCompatActivity  {
                 .append(lineSeparator)
                 .append(lineSeparator)
                 .append("LEILA CABELEIREIRA: O SALÃO DE CABELEIREIRA DA CABELEIREIRA LEILA")
-                ;
+        ;
 
         return result.toString();
     }
@@ -105,9 +107,9 @@ public class Contato  extends AppCompatActivity  {
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
-                setNome(text.getText().toString());
-                nomeIsCorrect = true;
-                enableButton(contact_button);
+                setName(text.getText().toString());
+                nameIsCorrect = true;
+                enableButton(confirmationButton);
             }
 
             @Override
@@ -127,7 +129,7 @@ public class Contato  extends AppCompatActivity  {
             public void afterTextChanged(Editable arg0) {
                 setEmail(text.getText().toString());
                 emailIsCorrect = true;
-                enableButton(contact_button);
+                enableButton(confirmationButton);
             }
 
             @Override
@@ -142,18 +144,18 @@ public class Contato  extends AppCompatActivity  {
     }
 
     public void enableButton(Button button) {
-        if (nomeIsCorrect && emailIsCorrect) {
+        if (nameIsCorrect && emailIsCorrect) {
             button.setEnabled(true);
         }
     }
 
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

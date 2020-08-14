@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".Register"
+            android:name=".Registration"
             >
         </activity>
 
@@ -32,22 +32,22 @@
         </activity>
 
         <activity
-            android:name=".Cabelos"
+            android:name=".HairPortfolio"
             >
         </activity>
 
         <activity
-            android:name=".Unhas"
+            android:name=".NailsPortfolio"
             >
         </activity>
 
         <activity
-            android:name=".Contato"
+            android:name=".ContactInformation"
             >
         </activity>
 
         <activity
-            android:name=".Final"
+            android:name=".Confirmation"
             >
         </activity>
 
