@@ -2,6 +2,8 @@ package com.example.teste;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,11 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Contato  extends AppCompatActivity  {
+    private String nome;
+    private String email;
+    private Button contact_button;
+    private boolean nomeIsCorrect, emailIsCorrect;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,16 +25,24 @@ public class Contato  extends AppCompatActivity  {
     }
 
     private void setUpListeners(){
-        Button contact_button = findViewById(R.id.final_button);
+
         EditText client = findViewById(R.id.editTextTextPersonName2);
-        final String name = client.getText().toString();
+        setUpName(client);
+
         EditText email = findViewById(R.id.editTextTextEmailAddress);
-        final String emailAdress = email.getText().toString();
-        contact_button.setOnClickListener(new View.OnClickListener() {
+        setUpEmail(email);
+
+        contact_button = findViewById(R.id.final_button);
+        contact_button.setEnabled(false);
+        setUpButton(contact_button);
+
+    }
+
+    private void setUpButton(Button button){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Contato.this, Final.class));
-
                 new Thread(new Runnable() {
 
                     @Override
@@ -35,8 +50,8 @@ public class Contato  extends AppCompatActivity  {
                         try {
                             GMailSender sender = new GMailSender("leilacabeleireira150@gmail.com",
                                     "framboesa");
-                            sender.sendMail("Seu horário com a Leila Cabeleireira está confirmado", composeEmail(name),
-                                    "leilacabeleireira150@gmail.com", "jonasccosta72@gmail.com");
+                            sender.sendMail("Seu horário com a Leila Cabeleireira está confirmado", composeEmail(getNome()),
+                                    "leilacabeleireira150@gmail.com", getEmail());
                         } catch (Exception e) {
                             Log.e("SendMail", e.getMessage(), e);
                         }
@@ -84,5 +99,68 @@ public class Contato  extends AppCompatActivity  {
                 ;
 
         return result.toString();
+    }
+
+    public void setUpName(final EditText text) {
+        text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                setNome(text.getText().toString());
+                nomeIsCorrect = true;
+                enableButton(contact_button);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+    }
+
+    public void setUpEmail(final EditText text) {
+        text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                setEmail(text.getText().toString());
+                emailIsCorrect = true;
+                enableButton(contact_button);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+    }
+
+    public void enableButton(Button button) {
+        if (nomeIsCorrect && emailIsCorrect) {
+            button.setEnabled(true);
+        }
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
