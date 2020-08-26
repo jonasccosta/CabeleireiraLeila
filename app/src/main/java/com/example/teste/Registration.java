@@ -1,9 +1,10 @@
 package com.example.teste;
-/**
-   Class that gathers the information about the time, date, and what serviced will be done,
-   all inputted by the user
-   @author Jonas C. Costa
 
+/**
+ * Class that gathers the information about the time, date, and what serviced will be done,
+ * all inputted by the user
+ *
+ * @author Jonas C. Costa
  */
 
 import android.content.Intent;
@@ -16,7 +17,9 @@ import android.widget.CalendarView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Registration extends AppCompatActivity {
+
     private List<String> activities = new ArrayList<>();
     private String time;
     private String date;
@@ -67,6 +71,7 @@ public class Registration extends AppCompatActivity {
     }
 
     public void setUpButton(Button button) {
+        //Button that goes to the contact information screen
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,9 +86,12 @@ public class Registration extends AppCompatActivity {
         radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                /*If the radio button is checked, its text is added to the list of activities,
+                the activityIsSelected boolean becomes true (meaning that at least one activity was
+                selected), and then we try to enable the button if all the other fields are filled
+                correctly.*/
                 if (b) {
                     addToList(radioButton);
-                    System.out.println(getActivities().get(0));
                     activityIsSelected = true;
                     enableButton(contactButton);
                 }
@@ -96,6 +104,12 @@ public class Registration extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                /*If the user changes the date on the CalendarView, we set the date to be that date,
+                the dateIsSelected boolean becomes true (meaning that the user selected a date for
+                the appointment), and then we try to enable the button if all the other fields are
+                filled correctly.
+                 */
+
                 month++;
                 setDate(dayOfMonth + "/" + month + "/" + year);
                 dateIsSelected = true;
@@ -108,7 +122,11 @@ public class Registration extends AppCompatActivity {
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
-                timeIsCorrect = enableSubmitIfReady(text);
+                /*If the user changes the time on the EditText, the timeIsCorrect boolean becomes
+                true if the user enter a valid time, and then we try to enable the button if all
+                the other fields are filled correctly.
+                 */
+                timeIsCorrect = checkTimeInput(text);
                 enableButton(contactButton);
 
             }
@@ -124,7 +142,14 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    public boolean enableSubmitIfReady(EditText text) {
+    /**
+     * Checks if the time inputted by the user is a valid time, by checking its length and if it
+     * can be converted in to a date object with "HH:mm" format
+     * @param text which is an EditText that contains the time of the appointment
+     * @return a boolean that represents if the string can be converted in a time
+     */
+
+    public boolean checkTimeInput(EditText text) {
         boolean correctFormat = false;
         if (text.getText().toString().length() == 5) {
             String hora = text.getText().toString();
@@ -150,14 +175,21 @@ public class Registration extends AppCompatActivity {
         return correctFormat;
     }
 
+    /**
+     * Enables a button if the all information inputted by the user is correct
+     * @param button that will be enable
+     */
     public void enableButton(Button button) {
         if (dateIsSelected && timeIsCorrect && activityIsSelected) {
             button.setEnabled(true);
         }
     }
 
-    private void sendInfo(){
-        String treatment = this.concatenate(this.getActivities());
+    /**
+     * Method that sends the information inputted by the user to the next screen
+     */
+    private void sendInfo() {
+        String treatment = this.listToString(this.getActivities());
         String date = this.getDate();
         String time = this.getTime();
 
@@ -171,32 +203,41 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    private String concatenate(List<String> strings){
+    /**
+     * Returns a string that represents all the elements of the string, putting a comma between
+     * elements and "e" (and) between the last 2 elements
+     * @param strings: list of strings
+     * @return a string that is a representation of the strings elements in the list
+     */
+
+    private String listToString(List<String> strings) {
         String result = "";
-        if(strings.size() == 0){
+        if (strings.size() == 0) {
             return "";
-        }
-        else if(strings.size() == 1){
+        } else if (strings.size() == 1) {
             result = strings.get(0);
-        }
-        else if(strings.size() == 2){
+        } else if (strings.size() == 2) {
             result = strings.get(0) + " e " + strings.get(1);
-        }
-        else{
+        } else {
             StringBuilder builder = new StringBuilder();
-            for(int i = 0; i < strings.size()-1; i++){
+            for (int i = 0; i < strings.size() - 1; i++) {
                 builder.append((strings.get(i)))
-                .append(", ");
+                        .append(", ");
             }
-            builder.deleteCharAt(builder.length()-1);
-            builder.deleteCharAt(builder.length()-1);
+            builder.deleteCharAt(builder.length() - 1);
+            builder.deleteCharAt(builder.length() - 1);
             builder.append(" e ");
-            builder.append(strings.get(strings.size()-1));
+            builder.append(strings.get(strings.size() - 1));
             result = builder.toString();
         }
 
         return result;
     }
+
+    /**
+     * Adds the text of a radioButton to a list of strings
+     * @param button button whose text will be added to the list
+     */
 
     private void addToList(RadioButton button) {
         if (button.isChecked()) {

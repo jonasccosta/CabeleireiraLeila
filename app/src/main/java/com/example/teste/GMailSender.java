@@ -15,7 +15,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-//Copied from https://stackoverflow.com/questions/2020088/sending-email-in-android-using-javamail-api-without-using-the-default-built-in-a
+/**
+ * Class that enables an email to be submitted from the app
+ * Copied from https://stackoverflow.com/questions/2020088/sending-email-in-android-using-javamail-api-without-using-the-default-built-in-a
+ *
+ * @author Vinayak Bevinakatti
+ */
+
 
 public class GMailSender extends javax.mail.Authenticator {
     private String mailhost = "smtp.gmail.com"; //Hostname of the SMTP mail server which you want to connect for sending emails.

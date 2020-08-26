@@ -1,8 +1,9 @@
 package com.example.teste;
 
 /**
-   Class that represents the hair portfolio
-   @author Jonas C. Costa
+ * Class that represents the hair portfolio
+ *
+ * @author Jonas C. Costa
  */
 
 import android.os.Bundle;

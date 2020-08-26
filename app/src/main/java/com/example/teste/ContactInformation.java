@@ -1,9 +1,9 @@
 package com.example.teste;
 
 /**
-   Class that gets the user's name and email
-   @author Jonas C. Costa
-
+ * Class that gets the user's name and email
+ *
+ * @author Jonas C. Costa
  */
 
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ContactInformation extends AppCompatActivity {
@@ -55,6 +56,7 @@ public class ContactInformation extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
+                            //Try to send an email from the hair dresser's email to the email the user inputted
                             GMailSender sender = new GMailSender("leilacabeleireira150@gmail.com",
                                     "framboesa");
                             sender.sendMail("Seu horário com a Leila Cabeleireira está confirmado", composeEmail(getName()),
@@ -69,6 +71,11 @@ public class ContactInformation extends AppCompatActivity {
         });
     }
 
+    /**
+     * Writes an email with all the information about the appointment, personalized with the user's name
+     * @param name represents the user's name
+     * @return a string with the body of the email
+     */
     private String composeEmail(String name) {
 
         Bundle extras = getIntent().getExtras();
@@ -109,10 +116,16 @@ public class ContactInformation extends AppCompatActivity {
         return result.toString();
     }
 
+
     public void setUpName(final EditText text) {
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
+                /*Set the name variable to be whatever the user entered on the EditText, set the
+                nameIsCorrect to true (meaning the the user entered something on that EditText), and
+                then we try to enable the button if all the other fields are filled correctly.
+                 */
+
                 setName(text.getText().toString());
                 nameIsCorrect = true;
                 enableButton(confirmationButton);
@@ -133,6 +146,10 @@ public class ContactInformation extends AppCompatActivity {
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
+                /*Set the email variable to be whatever the user entered on the EditText, set the
+                emailIsCorrect to true (meaning the the user entered something on that EditText), and
+                then we try to enable the button if all the other fields are filled correctly.
+                 */
                 setEmail(text.getText().toString());
                 emailIsCorrect = true;
                 enableButton(confirmationButton);
@@ -149,6 +166,10 @@ public class ContactInformation extends AppCompatActivity {
 
     }
 
+    /**
+     * Enables a button if the all information inputted by the user is correct
+     * @param button that will be enable
+     */
     public void enableButton(Button button) {
         if (nameIsCorrect && emailIsCorrect) {
             button.setEnabled(true);
