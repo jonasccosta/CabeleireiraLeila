@@ -1,5 +1,15 @@
 package com.example.teste;
 
+/**
+   Class that represents the main screen of the app, contains the name, slogan, and from there
+   the user can either go see the portfolio or schedule an appointment
+
+   @author Jonas C. Costa
+
+ */
+
+
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;

@@ -1,5 +1,12 @@
 package com.example.teste;
 
+/**
+   Class that represents the screen in which the user can choose to see the nails' portfolio
+   or the hair portfolio
+   @author Jonas C. Costa
+
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

@@ -1,5 +1,11 @@
 package com.example.teste;
 
+/**
+   Class that gets the user's name and email
+   @author Jonas C. Costa
+
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;

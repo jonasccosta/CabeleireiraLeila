@@ -1,4 +1,9 @@
 package com.example.teste;
+/**
+   Class that represents the nails' portfolio
+   @author Jonas C. Costa
+
+ */
 
 import android.os.Bundle;
 

@@ -1,4 +1,10 @@
 package com.example.teste;
+/**
+   Class that gathers the information about the time, date, and what serviced will be done,
+   all inputted by the user
+   @author Jonas C. Costa
+
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
