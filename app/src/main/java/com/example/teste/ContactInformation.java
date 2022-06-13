@@ -57,8 +57,8 @@ public class ContactInformation extends AppCompatActivity {
                     public void run() {
                         try {
                             //Try to send an email from the hair dresser's email to the email the user inputted
-                            GMailSender sender = new GMailSender("leilacabeleireira150@gmail.com",
-                                    "framboesa");
+                            GMailSender sender = new GMailSender("EMAIL",
+                                    "PASSWORD";
                             sender.sendMail("Seu horário com a Leila Cabeleireira está confirmado", composeEmail(getName()),
                                     "leilacabeleireira150@gmail.com", getEmail());
                         } catch (Exception e) {
